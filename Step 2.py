@@ -1,12 +1,12 @@
 import os
 
 i = 0
-for x in range(1):
+for x in range(781):
     name = f"Chapter{x+1}.txt"
     print(name)
     name2 = f"Chapter{x+1}.xhtml"
     
-    with open(name, 'r') as chapter, open(name2, 'w') as writeChapter:
+    with open(name, 'r', encoding='utf-8') as chapter, open(name2, 'w', encoding='utf-8') as writeChapter:
         print(name2)
         if chapter:
             if writeChapter:
