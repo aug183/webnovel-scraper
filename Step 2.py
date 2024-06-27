@@ -1,16 +1,17 @@
 import os
 
 i = 0
-for x in range(781):
-    name = f"Chapter{x+1}.txt"
+numberOfChapters = 0
+for x in range(1, numberOfChapters):
+    name = f"Chapter{x}.txt"
     print(name)
-    name2 = f"Chapter{x+1}.xhtml"
+    name2 = f"Chapter{x}.xhtml"
     
     with open(name, 'r', encoding='utf-8') as chapter, open(name2, 'w', encoding='utf-8') as writeChapter:
         print(name2)
         if chapter:
             if writeChapter:
-                print(f"Chapter {x + 1}")
+                print(f"Chapter {x}")
                 holder = chapter.readline().strip()
                 while not holder:
                     holder = chapter.readline().strip()
