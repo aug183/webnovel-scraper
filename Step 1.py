@@ -20,16 +20,21 @@ for chapternum in range(1 < 782):
     # Creating a new txt file
     chapter = open(f'Chapter{chapternum}.txt', 'a', encoding="utf-8")
 
+    # Finding the Chapter Content
+    novel_text = soup.find("div", {"id": "chr-content"})
+
     # Finding the Chapter Title
-    novel_title = soup.find("a", {"class": "chr-title"})
-    if novel_title:
-        title = novel_title['title']
+    if novel_text:
+        titleInBody = novel_text.find('h4')
+        if titleInBody:
+            title = titleInBody.get_text()
+        else: 
+            novel_title = soup.find("a", {"class": "chr-title"})
+            if novel_title:
+                title = novel_title['title']
 
     # Writing the Chapter Title
     chapter.write(title + '\n')
-
-    # Finding the Chapter Content
-    novel_text = soup.find("div", {"id": "chr-content"})
 
     if novel_text:
         paragraphs = novel_text.find_all('p')
