@@ -6,8 +6,8 @@ chapternum = 1
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
 }
-url = "https://novelbin.englishnovel.net/novel-book/lord-of-mysteries-2-circle-of-inevitability/chapter-1-1-foreigners"
-for chapternum in range(1 < 782):
+url = "https://freewebnovel.com/novel/"
+for chapternum in range(1, 508):
     # Accessing the webpage
     r = requests.get(url, headers=headers)
     soup = BeautifulSoup(r.content, 'html.parser')
@@ -21,7 +21,7 @@ for chapternum in range(1 < 782):
     chapter = open(f'Chapter{chapternum}.txt', 'a', encoding="utf-8")
 
     # Finding the Chapter Content
-    novel_text = soup.find("div", {"id": "chr-content"})
+    novel_text = soup.find("div", {"id": "article"})
 
     # Finding the Chapter Title
     if novel_text:
@@ -29,9 +29,9 @@ for chapternum in range(1 < 782):
         if titleInBody:
             title = titleInBody.get_text()
         else: 
-            novel_title = soup.find("a", {"class": "chr-title"})
-            if novel_title:
-                title = novel_title['title']
+            title = soup.find("span", {"class": "chapter"}).get_text()
+            # if novel_title:
+            #     title = novel_title['title']
 
     # Writing the Chapter Title
     chapter.write(title + '\n')
@@ -52,8 +52,8 @@ for chapternum in range(1 < 782):
     chapter.close()
 
     # Finding the next chapter from the "next" button in the page
-    a_tag = soup.find("a", {"id": "next_chap"})
-    url = a_tag['href']
+    a_tag = soup.find("a", title = "Read Next chapter")
+    url = "https://freewebnovel.com" + a_tag['href']
     
     # Delay of 1 second to avoid server timeout
     time.sleep(1)
